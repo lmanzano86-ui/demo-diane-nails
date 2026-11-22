@@ -23,7 +23,7 @@
 :root{
   --fondo:#FAF7F2; --crema:#F1E9DC; --taupe:#C2A88D; --taupe-osc:#9A7F57;
   --dorado:#B9975B; --tinta:#1A1A1A; --tinta-suave:#4A4238; --linea:#E4D9C6;
-  --espacio-seccion:64px; --espacio-bloque:32px; --espacio-tarjeta:20px; --espacio-control:12px;
+  --espacio-seccion:96px; --espacio-bloque:32px; --espacio-tarjeta:20px; --espacio-control:12px;
   --sombra:0 10px 28px rgba(154,127,87,.20);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -165,8 +165,68 @@ footer .credito{margin-top:26px;font-size:12.5px;color:#8E8471}
   .wa{display:none}
   .sello-flota{display:block;text-align:center}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+/* ===== Versión lujosa (v2, solo local) ===== */
+header{transition:box-shadow .3s ease}
+header.con-sombra{box-shadow:0 8px 26px rgba(26,26,26,.09)}
+.btn{letter-spacing:.4px}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(154,127,87,.28)}
+.hero{padding:76px 0 100px}
+.hero .kicker{display:flex;align-items:center;gap:14px;letter-spacing:5px}
+.hero .kicker::before{content:"";width:46px;height:1px;background:var(--dorado);flex:none}
+.hero-foto .arco{outline:1px solid rgba(185,151,91,.75);outline-offset:9px}
+.hero-foto .arco img{transition:transform 1.4s ease}
+.hero-foto:hover .arco img{transform:scale(1.04)}
+.prueba span{background:transparent}
+.tit h2{font-size:44px}
+.tit::after{content:"";display:block;width:74px;height:5px;border-top:1px solid var(--dorado);border-bottom:1px solid var(--dorado);margin:24px auto 0}
+/* Servicios como carta fina */
+.carta{max-width:880px;margin:0 auto}
+.carta-item{display:flex;align-items:flex-end;gap:16px;padding:22px 4px;border-bottom:1px solid var(--linea);text-decoration:none;transition:background .3s ease}
+.carta-item:first-child{border-top:1px solid var(--linea)}
+.carta-item:hover{background:rgba(241,233,220,.55)}
+.carta-info{display:flex;flex-direction:column;gap:2px}
+.carta-nombre{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;line-height:1.15}
+.carta-desc{font-size:14.5px;color:var(--tinta-suave)}
+.carta-puntos{flex:1;border-bottom:1px dotted var(--taupe);margin-bottom:9px;min-width:22px}
+.carta-lado{text-align:right;flex:none}
+.carta-precio{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700;color:var(--dorado);white-space:nowrap;line-height:1}
+.carta-precio s{font-size:19px;color:#B9AC97;font-weight:500;margin-right:5px}
+.carta-res{display:block;font-size:10.5px;letter-spacing:2.2px;color:var(--taupe-osc);font-weight:600;text-transform:uppercase;margin-top:3px}
+/* Galería con marco fino */
+.grid-gal figure{outline:1px solid rgba(185,151,91,.65);outline-offset:5px}
+.grid-gal img{transition:transform 1.2s ease}
+.grid-gal figure:hover img{transform:scale(1.05)}
+/* Marca de agua DY en El salón */
+#salon{position:relative;overflow:hidden}
+#salon::after{content:"DY";position:absolute;right:-24px;top:6px;font-family:'Cormorant Garamond',serif;font-size:330px;font-weight:700;color:rgba(185,151,91,.10);line-height:1;pointer-events:none}
+#salon .wrap{position:relative;z-index:1}
+/* Reseñas sobre banda oscura (el negro/dorado de su propio cartel) */
+.fondo-oscuro{background:var(--tinta);color:#EDE6D8}
+.fondo-oscuro .tit h2{color:#fff}
+.fondo-oscuro .tit p{color:#CFC4AC}
+.cita-grande{text-align:center;max-width:760px;margin:0 auto}
+.cita-grande .estrellas{color:var(--dorado);letter-spacing:6px;font-size:19px}
+.cita-grande blockquote{font-family:'Cormorant Garamond',serif;font-size:44px;font-style:italic;line-height:1.2;margin:16px 0 10px;color:#fff}
+.cita-grande .quien{font-size:14.5px;color:#CFC4AC;letter-spacing:1.6px;text-transform:uppercase}
+.citas-mini{display:flex;flex-wrap:wrap;gap:34px;justify-content:center;margin-top:44px}
+.citas-mini figure{text-align:center;max-width:300px}
+.citas-mini blockquote{font-family:'Cormorant Garamond',serif;font-size:25px;font-style:italic;line-height:1.3;color:#EDE6D8}
+.citas-mini figcaption{font-size:13.5px;color:#B9AC97;margin-top:6px;letter-spacing:1px}
+.fondo-oscuro .nota-centro{color:#CFC4AC}
+.fondo-oscuro .nota-centro a{color:#E9CE8C}
+footer{border-top:2px solid var(--dorado)}
+/* Revelado suave al bajar */
+html.js .revela{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease}
+html.js .revela.visible{opacity:1;transform:none}
+@media (max-width:620px){
+  .carta-nombre{font-size:23px}.carta-precio{font-size:23px}
+  .cita-grande blockquote{font-size:33px}
+  #salon::after{font-size:200px}
+}
+@media print{html.js .revela{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}html.js .revela{opacity:1;transform:none;transition:none}.grid-gal img,.hero-foto .arco img{transition:none}}
 </style>
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 <header>
@@ -217,88 +277,52 @@ footer .credito{margin-top:26px;font-size:12.5px;color:#8E8471}
       <h2><span data-es="Servicios y precios" data-en="Services &amp; prices">Servicios y precios</span><br><span class="script" data-es="elige tu favorito" data-en="pick your favorite">elige tu favorito</span></h2>
       <p data-es="Precios reales de su menú en Booksy. Toca Reservar y elige tu día y tu hora." data-en="Real prices from her Booksy menu. Tap Book and pick your day and time.">Precios reales de su menú en Booksy. Toca Reservar y elige tu día y tu hora.</p>
     </div>
-    <div class="grid-serv">
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-combo.webp" alt="Diseño de uñas de lujo, trabajo real del salón" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3>✨ Combo Deluxe ✨</h3>
-          <div class="dur">Builder Gel + Volcano Spa Pedicure · 1 h 30 min</div>
-          <p class="desc" data-es="El consentido de la casa: manos y pies, completo." data-en="The house favorite: hands and feet, complete.">El consentido de la casa: manos y pies, completo.</p>
-          <div class="pie"><span class="precio">$120</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-builderpedi.webp" alt="Uñas almendra en tono burdeos, trabajo real del salón" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3>Builder Gel + Pedicure Gel</h3>
-          <div class="dur">1 h 35 min</div>
-          <p class="desc" data-es="Estructura y brillo en las manos, gel perfecto en los pies." data-en="Structure and shine on your hands, perfect gel on your feet.">Estructura y brillo en las manos, gel perfecto en los pies.</p>
-          <div class="pie"><span class="precio">$100</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-builder.webp" alt="Builder gel en rosa lechoso con detalle animal print" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3>Builder Gel</h3>
-          <div class="dur">55 min</div>
-          <p class="desc" data-es="Refuerzo ideal para uñas frágiles, delgadas o con imperfecciones." data-en="The ideal overlay for fragile, thin or imperfect nails.">Refuerzo ideal para uñas frágiles, delgadas o con imperfecciones.</p>
-          <div class="pie"><span class="precio"><s>$55</s>$49.50</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-apres.webp" alt="Uñas aprés en azul intenso, trabajo real del salón" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3 data-es="Ápres Nails — Cortas" data-en="Ápres Nails — Short">Ápres Nails — Cortas</h3>
-          <div class="dur">55 min</div>
-          <p class="desc" data-es="Extensiones ligeras, naturales y con el largo que amas." data-en="Light, natural extensions at the length you love.">Extensiones ligeras, naturales y con el largo que amas.</p>
-          <div class="pie"><span class="precio"><s>$60</s>$54</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-acrylic.webp" alt="Uñas acrílicas con diseño tortuga y francesa" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3 data-es="Acrílicas — Cortas" data-en="Acrylic Nails — Short">Acrílicas — Cortas</h3>
-          <div class="dur">1 h 15 min</div>
-          <p class="desc" data-es="El clásico que nunca falla, con tu diseño favorito." data-en="The classic that never fails, with your favorite design.">El clásico que nunca falla, con tu diseño favorito.</p>
-          <div class="pie"><span class="precio"><s>$60</s>$54</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-volcano.webp" alt="Pedicura spa con acabado natural" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3>Volcano Spa Pedicure</h3>
-          <div class="dur">35 min</div>
-          <p class="desc" data-es="Un ritual de spa para descansar y salir renovada." data-en="A spa ritual to relax and leave renewed.">Un ritual de spa para descansar y salir renovada.</p>
-          <div class="pie"><span class="precio">$65</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-pedigel.webp" alt="Pedicura en gel, trabajo real del salón" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3>Pedicure Gel</h3>
-          <div class="dur">35 min</div>
-          <p class="desc" data-es="Pies cuidados y color que dura semanas." data-en="Well-kept feet and color that lasts for weeks.">Pies cuidados y color que dura semanas.</p>
-          <div class="pie"><span class="precio"><s>$45</s>$40.50</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-manigel.webp" alt="Manicura en gel rosa con diseño delicado" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3>Manicure Gel</h3>
-          <div class="dur">45 min</div>
-          <p class="desc" data-es="Brillo perfecto y acabado delicado, en tu tono." data-en="Perfect shine and a delicate finish, in your shade.">Brillo perfecto y acabado delicado, en tu tono.</p>
-          <div class="pie"><span class="precio"><s>$45</s>$40.50</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
-      <article class="tarjeta">
-        <div class="foto"><img src="imgs/svc-manireg.webp" alt="Manicura clásica en blanco lechoso" loading="lazy" width="600" height="510"></div>
-        <div class="cuerpo">
-          <h3>Manicure Regular</h3>
-          <div class="dur">30 min</div>
-          <p class="desc" data-es="Limpia, pulida y elegante: la de todos los días, bien hecha." data-en="Clean, polished and elegant: the everyday one, done right.">Limpia, pulida y elegante: la de todos los días, bien hecha.</p>
-          <div class="pie"><span class="precio"><s>$35</s>$31.50</span><a class="btn btn-dorado btn-mini" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Reservar" data-en="Book">Reservar</a></div>
-        </div>
-      </article>
+    <div class="carta">
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">✨ Combo Deluxe ✨</span><span class="carta-desc" data-es="El consentido de la casa: manos y pies, completo. · Builder Gel + Volcano Spa Pedicure · 1 h 30 min" data-en="The house favorite: hands and feet, complete. · Builder Gel + Volcano Spa Pedicure · 1 h 30 min">El consentido de la casa: manos y pies, completo. · Builder Gel + Volcano Spa Pedicure · 1 h 30 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio">$120</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Builder Gel + Pedicure Gel</span><span class="carta-desc" data-es="Estructura y brillo en las manos, gel perfecto en los pies. · 1 h 35 min" data-en="Structure and shine on your hands, perfect gel on your feet. · 1 h 35 min">Estructura y brillo en las manos, gel perfecto en los pies. · 1 h 35 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio">$100</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Builder Gel</span><span class="carta-desc" data-es="Refuerzo ideal para uñas frágiles, delgadas o con imperfecciones. · 55 min" data-en="The ideal overlay for fragile, thin or imperfect nails. · 55 min">Refuerzo ideal para uñas frágiles, delgadas o con imperfecciones. · 55 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio"><s>$55</s>$49.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre" data-es="Ápres Nails — Cortas" data-en="Ápres Nails — Short">Ápres Nails — Cortas</span><span class="carta-desc" data-es="Extensiones ligeras, naturales y con el largo que amas. · 55 min" data-en="Light, natural extensions at the length you love. · 55 min">Extensiones ligeras, naturales y con el largo que amas. · 55 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio"><s>$60</s>$54</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre" data-es="Acrílicas — Cortas" data-en="Acrylic Nails — Short">Acrílicas — Cortas</span><span class="carta-desc" data-es="El clásico que nunca falla, con tu diseño favorito. · 1 h 15 min" data-en="The classic that never fails, with your favorite design. · 1 h 15 min">El clásico que nunca falla, con tu diseño favorito. · 1 h 15 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio"><s>$60</s>$54</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Volcano Spa Pedicure</span><span class="carta-desc" data-es="Un ritual de spa para descansar y salir renovada. · 35 min" data-en="A spa ritual to relax and leave renewed. · 35 min">Un ritual de spa para descansar y salir renovada. · 35 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio">$65</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Pedicure Gel</span><span class="carta-desc" data-es="Pies cuidados y color que dura semanas. · 35 min" data-en="Well-kept feet and color that lasts for weeks. · 35 min">Pies cuidados y color que dura semanas. · 35 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio"><s>$45</s>$40.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Manicure Gel</span><span class="carta-desc" data-es="Brillo perfecto y acabado delicado, en tu tono. · 45 min" data-en="Perfect shine and a delicate finish, in your shade. · 45 min">Brillo perfecto y acabado delicado, en tu tono. · 45 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio"><s>$45</s>$40.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Manicure Regular</span><span class="carta-desc" data-es="Limpia, pulida y elegante: la de todos los días, bien hecha. · 30 min" data-en="Clean, polished and elegant: the everyday one, done right. · 30 min">Limpia, pulida y elegante: la de todos los días, bien hecha. · 30 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio"><s>$35</s>$31.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
     </div>
     <p class="nota-centro"><span data-es="¿Buscas otro servicio? En su menú de Booksy hay 20: rellenos, rubber base, largos y más." data-en="Looking for something else? Her Booksy menu has 20 services: fills, rubber base, lengths and more.">¿Buscas otro servicio? En su menú de Booksy hay 20: rellenos, rubber base, largos y más.</span> <a target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Ver el menú completo" data-en="See the full menu">Ver el menú completo</a></p>
   </div>
@@ -358,16 +382,20 @@ footer .credito{margin-top:26px;font-size:12.5px;color:#8E8471}
   </div>
 </section>
 
-<section id="resenas">
+<section id="resenas" class="fondo-oscuro">
   <div class="wrap">
     <div class="tit">
       <h2><span data-es="Lo que dicen sus clientas" data-en="What her clients say">Lo que dicen sus clientas</span></h2>
       <p data-es="Reseñas reales de Booksy, donde tiene 5.0 con 172 reseñas." data-en="Real Booksy reviews, where she holds 5.0 with 172 reviews.">Reseñas reales de Booksy, donde tiene 5.0 con 172 reseñas.</p>
     </div>
-    <div class="grid-res">
-      <div class="resena"><div class="estrellas">★★★★★</div><blockquote>“Recomiendo a Diane 100%”</blockquote><div class="quien">Mariangeli · Builder Gel · Booksy</div></div>
-      <div class="resena"><div class="estrellas">★★★★★</div><blockquote>“Diane is the best nail tech”</blockquote><div class="quien">Jodi · Builder Gel + Pedicure Gel · Booksy</div></div>
-      <div class="resena"><div class="estrellas">★★★★★</div><blockquote>“Me encanta”</blockquote><div class="quien">Odelmis · Builder Gel + Pedicure Gel · Booksy</div></div>
+    <div class="cita-grande">
+      <div class="estrellas">★★★★★</div>
+      <blockquote>“Diane is the best nail tech”</blockquote>
+      <div class="quien">Jodi · Builder Gel + Pedicure Gel · Booksy</div>
+    </div>
+    <div class="citas-mini">
+      <figure><blockquote>“Recomiendo a Diane 100%”</blockquote><figcaption>Mariangeli · Builder Gel · Booksy</figcaption></figure>
+      <figure><blockquote>“Me encanta”</blockquote><figcaption>Odelmis · Builder Gel + Pedicure Gel · Booksy</figcaption></figure>
     </div>
     <p class="nota-centro"><a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Diane+Nails+Sal%C3%B3n+%26+YHC/@28.0113335,-82.4779555" data-es="Verla en Google Maps · 4.9 con 34 reseñas" data-en="See her on Google Maps · 4.9 with 34 reviews">Verla en Google Maps · 4.9 con 34 reseñas</a></p>
   </div>
@@ -430,6 +458,15 @@ function setLang(lang){
   try{ localStorage.setItem('diane-lang', lang); }catch(e){}
 }
 (function(){
+  var cab = document.querySelector('header');
+  window.addEventListener('scroll', function(){ cab.classList.toggle('con-sombra', window.scrollY > 10); }, {passive:true});
+  var els = document.querySelectorAll('.tit, .carta-item, .grid-gal figure, .chip-mas, .cita-grande, .citas-mini figure, .dato, .salon-fotos, .lista-cafe li');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, {threshold:.12});
+    els.forEach(function(el){ el.classList.add('revela'); io.observe(el); });
+  }
   var saved = null;
   try{ saved = localStorage.getItem('diane-lang'); }catch(e){}
   if(saved === 'en'){ setLang('en'); }

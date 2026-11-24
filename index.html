@@ -22,16 +22,20 @@
 <style>
 :root{
   --fondo:#FAF7F2; --crema:#F1E9DC; --taupe:#C2A88D; --taupe-osc:#9A7F57;
-  --dorado:#B9975B; --tinta:#1A1A1A; --tinta-suave:#4A4238; --linea:#E4D9C6;
+  --dorado:#B9975B; --dorado-claro:#E9CE8C; --tinta:#1A1A1A; --tinta-suave:#4A4238; --linea:#E4D9C6;
   --espacio-seccion:96px; --espacio-bloque:32px; --espacio-tarjeta:20px; --espacio-control:12px;
   --sombra:0 10px 28px rgba(154,127,87,.20);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{overflow-x:clip}
+::selection{background:var(--dorado);color:var(--tinta)}
+:focus-visible{outline:2px solid var(--taupe-osc);outline-offset:3px;border-radius:4px}
+.fondo-oscuro :focus-visible,footer :focus-visible{outline-color:var(--dorado-claro)}
 body{font-family:'Jost',sans-serif;background:var(--fondo);color:var(--tinta);font-weight:300;line-height:1.55;font-size:17px}
 img{display:block;max-width:100%}
 a{color:inherit}
-h1,h2{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.08}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.08;text-wrap:balance}
 .script{font-family:'Great Vibes',cursive;font-weight:400;color:var(--dorado)}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 /* Encabezado */
@@ -45,12 +49,11 @@ header{position:sticky;top:0;z-index:50;background:rgba(250,247,242,.96);border-
 .lang{flex:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 24px;font-family:'Jost',sans-serif;font-weight:500;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,opacity .18s ease}
 .btn:active{transform:scale(.98)}
-.btn-dorado{background:var(--dorado);color:#fff}
+.btn-dorado{background:var(--dorado);color:var(--tinta)}
 .btn-contorno{background:transparent;border-color:var(--taupe-osc);color:var(--tinta)}
-.btn-claro{background:var(--fondo);color:var(--tinta)}
 .lang{display:flex;border:1px solid var(--taupe);border-radius:999px;overflow:hidden}
 .lang button{border:0;background:transparent;padding:8px 13px;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;cursor:pointer;color:var(--tinta-suave)}
-.lang button.activo{background:var(--taupe);color:#fff}
+.lang button.activo{background:var(--taupe);color:var(--tinta)}
 /* Hero */
 .hero{padding:48px 0 var(--espacio-seccion)}
 .hero-grid{display:flex;flex-direction:column;gap:var(--espacio-bloque)}
@@ -79,19 +82,6 @@ section{padding:var(--espacio-seccion) 0}
 .tit h2 .script{font-size:42px}
 .tit p{color:var(--tinta-suave);margin-top:8px}
 .fondo-crema{background:var(--crema)}
-/* Servicios */
-.grid-serv{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
-.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:170px 170px 18px 18px;overflow:hidden;width:100%;max-width:330px;display:flex;flex-direction:column}
-.tarjeta .foto{aspect-ratio:4/3.4;overflow:hidden;border-radius:170px 170px 0 0}
-.tarjeta .foto img{width:100%;height:100%;object-fit:cover}
-.tarjeta .cuerpo{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
-.tarjeta h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;line-height:1.15}
-.tarjeta .dur{font-size:14px;color:var(--taupe-osc);letter-spacing:.4px}
-.tarjeta .desc{font-size:15px;color:var(--tinta-suave)}
-.tarjeta .pie{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:10px}
-.precio{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700;color:var(--dorado)}
-.precio s{font-size:19px;color:#B9AC97;font-weight:500;margin-right:5px}
-.btn-mini{padding:9px 18px;font-size:15px}
 .nota-centro{text-align:center;margin-top:26px;color:var(--tinta-suave)}
 .nota-centro a{color:var(--taupe-osc);font-weight:500}
 /* Más que uñas */
@@ -109,12 +99,6 @@ section{padding:var(--espacio-seccion) 0}
 .lista-cafe{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:16px}
 .lista-cafe li{display:flex;gap:10px;align-items:baseline;font-size:16.5px}
 .lista-cafe li::before{content:"✦";color:var(--dorado);font-size:13px}
-/* Reseñas */
-.grid-res{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
-.resena{background:#fff;border:1px solid var(--linea);border-top:3px solid var(--dorado);border-radius:14px;padding:22px;width:100%;max-width:330px}
-.resena .estrellas{color:var(--dorado);letter-spacing:3px;font-size:15px}
-.resena blockquote{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;line-height:1.3;margin:10px 0}
-.resena .quien{font-size:14.5px;color:var(--taupe-osc);font-weight:500}
 /* Visita */
 .visita-grid{display:flex;flex-direction:column;gap:var(--espacio-bloque)}
 .dato{margin-bottom:18px}
@@ -139,8 +123,8 @@ footer .credito{margin-top:26px;font-size:12.5px;color:#8E8471}
 @media (min-width:760px){
   .hero-grid{flex-direction:row;align-items:center}
   .hero-grid>div{flex:1}
-  .hero h1{font-size:66px}
-  .hero h1 .script{font-size:70px}
+  .hero h1{font-size:78px}
+  .hero h1 .script{font-size:82px}
   .visita-grid{flex-direction:row}
   .visita-grid>div{flex:1}
   .salon-grid{flex-direction:row;align-items:center}
@@ -213,7 +197,7 @@ header.con-sombra{box-shadow:0 8px 26px rgba(26,26,26,.09)}
 .citas-mini blockquote{font-family:'Cormorant Garamond',serif;font-size:25px;font-style:italic;line-height:1.3;color:#EDE6D8}
 .citas-mini figcaption{font-size:13.5px;color:#B9AC97;margin-top:6px;letter-spacing:1px}
 .fondo-oscuro .nota-centro{color:#CFC4AC}
-.fondo-oscuro .nota-centro a{color:#E9CE8C}
+.fondo-oscuro .nota-centro a{color:var(--dorado-claro)}
 footer{border-top:2px solid var(--dorado)}
 /* Revelado suave al bajar */
 html.js .revela{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease}
@@ -225,6 +209,47 @@ html.js .revela.visible{opacity:1;transform:none}
 }
 @media print{html.js .revela{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}html.js .revela{opacity:1;transform:none;transition:none}.grid-gal img,.hero-foto .arco img{transition:none}}
+/* ===== Retoque de lujo v3 (solo local) ===== */
+body{background-image:radial-gradient(ellipse 90% 480px at 50% -120px, rgba(241,233,220,.9), rgba(250,247,242,0) 70%)}
+header{border-top:2px solid var(--dorado)}
+.prueba{gap:0;margin-top:30px;align-items:center}
+.prueba span{border:0;border-radius:0;background:transparent;padding:6px 16px}
+.prueba span:first-child{padding-left:0}
+.prueba span+span{border-left:1px solid var(--taupe)}
+/* Marquesina de su cartel */
+.marquesina{background:var(--tinta);overflow:hidden;padding:13px 0;border-bottom:1px solid var(--dorado)}
+.marq-pista{display:flex;width:max-content;animation:marq 30s linear infinite}
+.marq-pista span{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;letter-spacing:3.5px;color:var(--dorado-claro);white-space:nowrap;text-transform:uppercase}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* Carta v3: grupos y más aire */
+.carta-item{padding:26px 4px}
+.carta-nombre{font-size:29px}
+.carta-grupo{display:flex;align-items:center;gap:16px;margin:36px 0 4px;font-size:12.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--taupe-osc);font-weight:600}
+.carta-grupo:first-child{margin-top:4px}
+.carta-grupo::before,.carta-grupo::after{content:"";flex:1;height:1px;background:var(--linea)}
+.carta-item{border-top:0}
+/* Galería con pie de foto editorial */
+.grid-gal figure{background:#fff;padding-bottom:8px}
+.grid-gal figcaption{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--taupe-osc);text-align:center;padding:10px 6px 2px}
+/* La experiencia: tres momentos de la visita */
+.ritual{display:flex;flex-wrap:wrap;justify-content:center}
+.paso{flex:1;min-width:240px;max-width:340px;text-align:center;padding:10px 30px;position:relative}
+.paso+.paso::before{content:"";position:absolute;left:0;top:18%;height:64%;width:1px;background:var(--linea)}
+.paso .num{font-family:'Cormorant Garamond',serif;font-variant-numeric:tabular-nums;font-size:48px;font-weight:500;color:var(--dorado);line-height:1}
+.paso h3{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;margin:8px 0 6px}
+.paso p{font-size:15.5px;color:var(--tinta-suave)}
+/* Banda oscura con marca de agua y comilla editorial */
+.fondo-oscuro{position:relative;overflow:hidden}
+.fondo-oscuro::before{content:"DY";position:absolute;left:-24px;bottom:-76px;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:300px;color:rgba(250,247,242,.045);line-height:1;pointer-events:none}
+.fondo-oscuro .wrap{position:relative;z-index:1}
+.cita-grande::before{content:"\201C";display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:88px;color:var(--dorado);line-height:.55;margin-bottom:14px}
+/* Pie con logotipo grande */
+footer .nombre-grande{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7.5vw,68px);font-weight:700;letter-spacing:10px;color:rgba(185,151,91,.30);line-height:1.05}
+footer .horario-pie{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#CFC4AC}
+@media (max-width:620px){.paso+.paso::before{display:none}.paso{padding:16px 10px}.marq-pista span{font-size:16px}}
+@media print{.marq-pista{animation:none}}
+@media (prefers-reduced-motion:reduce){.marq-pista{animation:none}}
+
 </style>
 <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -233,7 +258,7 @@ html.js .revela.visible{opacity:1;transform:none}
   <div class="wrap cab">
     <div class="sello" aria-hidden="true">DY</div>
     <div class="marca">
-      <div class="nombre">DIANE NAILS</div>
+      <div class="nombre-grande">DIANE NAILS</div>
       <div class="sub">Salón &amp; YHC</div>
     </div>
     <nav>
@@ -269,7 +294,8 @@ html.js .revela.visible{opacity:1;transform:none}
   </div>
 </div>
 
-<div class="banda-marca"><img src="imgs/marca-banner.webp" alt="Diane Nails Salon & YHC — Luxury Nail Care, elegancia en cada detalle" width="900" height="507" loading="lazy"></div>
+<div class="banda-marca"><img src="imgs/marca-banner.webp" alt="Diane Nails Salon &amp; YHC — Luxury Nail Care, elegancia en cada detalle" width="900" height="507" loading="lazy"></div>
+<div class="marquesina" aria-hidden="true"><div class="marq-pista"><span data-es="Luxury Nail Care ✦ Elegancia en cada detalle ✦ Solo con cita previa ✦ Tampa, Florida ✦ " data-en="Luxury Nail Care ✦ Elegance in every detail ✦ By appointment only ✦ Tampa, Florida ✦ ">Luxury Nail Care ✦ Elegancia en cada detalle ✦ Solo con cita previa ✦ Tampa, Florida ✦ </span><span data-es="Luxury Nail Care ✦ Elegancia en cada detalle ✦ Solo con cita previa ✦ Tampa, Florida ✦ " data-en="Luxury Nail Care ✦ Elegance in every detail ✦ By appointment only ✦ Tampa, Florida ✦ ">Luxury Nail Care ✦ Elegancia en cada detalle ✦ Solo con cita previa ✦ Tampa, Florida ✦ </span></div></div>
 
 <section id="servicios">
   <div class="wrap">
@@ -278,6 +304,7 @@ html.js .revela.visible{opacity:1;transform:none}
       <p data-es="Precios reales de su menú en Booksy. Toca Reservar y elige tu día y tu hora." data-en="Real prices from her Booksy menu. Tap Book and pick your day and time.">Precios reales de su menú en Booksy. Toca Reservar y elige tu día y tu hora.</p>
     </div>
     <div class="carta">
+      <div class="carta-grupo" data-es="Los consentidos de la casa" data-en="House favorites">Los consentidos de la casa</div>
       <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
         <span class="carta-info"><span class="carta-nombre">✨ Combo Deluxe ✨</span><span class="carta-desc" data-es="El consentido de la casa: manos y pies, completo. · Builder Gel + Volcano Spa Pedicure · 1 h 30 min" data-en="The house favorite: hands and feet, complete. · Builder Gel + Volcano Spa Pedicure · 1 h 30 min">El consentido de la casa: manos y pies, completo. · Builder Gel + Volcano Spa Pedicure · 1 h 30 min</span></span>
         <span class="carta-puntos" aria-hidden="true"></span>
@@ -288,6 +315,7 @@ html.js .revela.visible{opacity:1;transform:none}
         <span class="carta-puntos" aria-hidden="true"></span>
         <span class="carta-lado"><span class="carta-precio">$100</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
       </a>
+      <div class="carta-grupo" data-es="Manos" data-en="Hands">Manos</div>
       <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
         <span class="carta-info"><span class="carta-nombre">Builder Gel</span><span class="carta-desc" data-es="Refuerzo ideal para uñas frágiles, delgadas o con imperfecciones. · 55 min" data-en="The ideal overlay for fragile, thin or imperfect nails. · 55 min">Refuerzo ideal para uñas frágiles, delgadas o con imperfecciones. · 55 min</span></span>
         <span class="carta-puntos" aria-hidden="true"></span>
@@ -304,16 +332,6 @@ html.js .revela.visible{opacity:1;transform:none}
         <span class="carta-lado"><span class="carta-precio"><s>$60</s>$54</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
       </a>
       <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
-        <span class="carta-info"><span class="carta-nombre">Volcano Spa Pedicure</span><span class="carta-desc" data-es="Un ritual de spa para descansar y salir renovada. · 35 min" data-en="A spa ritual to relax and leave renewed. · 35 min">Un ritual de spa para descansar y salir renovada. · 35 min</span></span>
-        <span class="carta-puntos" aria-hidden="true"></span>
-        <span class="carta-lado"><span class="carta-precio">$65</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
-      </a>
-      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
-        <span class="carta-info"><span class="carta-nombre">Pedicure Gel</span><span class="carta-desc" data-es="Pies cuidados y color que dura semanas. · 35 min" data-en="Well-kept feet and color that lasts for weeks. · 35 min">Pies cuidados y color que dura semanas. · 35 min</span></span>
-        <span class="carta-puntos" aria-hidden="true"></span>
-        <span class="carta-lado"><span class="carta-precio"><s>$45</s>$40.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
-      </a>
-      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
         <span class="carta-info"><span class="carta-nombre">Manicure Gel</span><span class="carta-desc" data-es="Brillo perfecto y acabado delicado, en tu tono. · 45 min" data-en="Perfect shine and a delicate finish, in your shade. · 45 min">Brillo perfecto y acabado delicado, en tu tono. · 45 min</span></span>
         <span class="carta-puntos" aria-hidden="true"></span>
         <span class="carta-lado"><span class="carta-precio"><s>$45</s>$40.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
@@ -322,6 +340,17 @@ html.js .revela.visible{opacity:1;transform:none}
         <span class="carta-info"><span class="carta-nombre">Manicure Regular</span><span class="carta-desc" data-es="Limpia, pulida y elegante: la de todos los días, bien hecha. · 30 min" data-en="Clean, polished and elegant: the everyday one, done right. · 30 min">Limpia, pulida y elegante: la de todos los días, bien hecha. · 30 min</span></span>
         <span class="carta-puntos" aria-hidden="true"></span>
         <span class="carta-lado"><span class="carta-precio"><s>$35</s>$31.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <div class="carta-grupo" data-es="Pies" data-en="Feet">Pies</div>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Volcano Spa Pedicure</span><span class="carta-desc" data-es="Un ritual de spa para descansar y salir renovada. · 35 min" data-en="A spa ritual to relax and leave renewed. · 35 min">Un ritual de spa para descansar y salir renovada. · 35 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio">$65</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
+      </a>
+      <a class="carta-item" target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa">
+        <span class="carta-info"><span class="carta-nombre">Pedicure Gel</span><span class="carta-desc" data-es="Pies cuidados y color que dura semanas. · 35 min" data-en="Well-kept feet and color that lasts for weeks. · 35 min">Pies cuidados y color que dura semanas. · 35 min</span></span>
+        <span class="carta-puntos" aria-hidden="true"></span>
+        <span class="carta-lado"><span class="carta-precio"><s>$45</s>$40.50</span><span class="carta-res" data-es="Reservar" data-en="Book">Reservar</span></span>
       </a>
     </div>
     <p class="nota-centro"><span data-es="¿Buscas otro servicio? En su menú de Booksy hay 20: rellenos, rubber base, largos y más." data-en="Looking for something else? Her Booksy menu has 20 services: fills, rubber base, lengths and more.">¿Buscas otro servicio? En su menú de Booksy hay 20: rellenos, rubber base, largos y más.</span> <a target="_blank" rel="noopener" href="https://booksy.com/en-us/1445286_diane-nails-salon-yhc_nail-salon_15761_tampa" data-es="Ver el menú completo" data-en="See the full menu">Ver el menú completo</a></p>
@@ -351,16 +380,29 @@ html.js .revela.visible{opacity:1;transform:none}
       <h2><span data-es="Trabajos reales" data-en="Real work">Trabajos reales</span><br><span class="script" data-es="de sus clientas, en su salón" data-en="from her clients, at her salon">de sus clientas, en su salón</span></h2>
     </div>
     <div class="grid-gal">
-      <figure><img src="imgs/gal-blanco.webp" alt="Manicura en blanco lechoso, trabajo real del salón" loading="lazy" width="600" height="750"></figure>
-      <figure><img src="imgs/gal-diseno.webp" alt="Diseño de uñas en tonos café y blanco" loading="lazy" width="600" height="750"></figure>
-      <figure><img src="imgs/gal-dorado.webp" alt="Uñas con acabado dorado metálico" loading="lazy" width="600" height="750"></figure>
-      <figure><img src="imgs/gal-verde.webp" alt="Uñas almendra en verde con detalles" loading="lazy" width="600" height="750"></figure>
-      <figure><img src="imgs/gal-naranja.webp" alt="Uñas en tonos naranja con diseño" loading="lazy" width="600" height="750"></figure>
-      <figure><img src="imgs/gal-francesa.webp" alt="Francesa con detalles dorados" loading="lazy" width="600" height="750"></figure>
+      <figure><img src="imgs/gal-blanco.webp" alt="Manicura en blanco lechoso, trabajo real del salón" loading="lazy" width="600" height="750"><figcaption data-es="Blanco lechoso" data-en="Milky white">Blanco lechoso</figcaption></figure>
+      <figure><img src="imgs/gal-diseno.webp" alt="Diseño de uñas en tonos café y blanco" loading="lazy" width="600" height="750"><figcaption data-es="Café y blanco" data-en="Coffee and white">Café y blanco</figcaption></figure>
+      <figure><img src="imgs/gal-dorado.webp" alt="Uñas con acabado dorado metálico" loading="lazy" width="600" height="750"><figcaption data-es="Dorado metálico" data-en="Metallic gold">Dorado metálico</figcaption></figure>
+      <figure><img src="imgs/gal-verde.webp" alt="Uñas almendra en verde con detalles" loading="lazy" width="600" height="750"><figcaption data-es="Verde almendra" data-en="Almond green">Verde almendra</figcaption></figure>
+      <figure><img src="imgs/gal-naranja.webp" alt="Uñas en tonos naranja con diseño" loading="lazy" width="600" height="750"><figcaption data-es="Toques naranja" data-en="Orange accents">Toques naranja</figcaption></figure>
+      <figure><img src="imgs/gal-francesa.webp" alt="Francesa con detalles dorados" loading="lazy" width="600" height="750"><figcaption data-es="Francesa dorada" data-en="Golden French">Francesa dorada</figcaption></figure>
     </div>
   </div>
 </section>
 
+
+<section id="experiencia">
+  <div class="wrap">
+    <div class="tit">
+      <h2><span data-es="La experiencia" data-en="The experience">La experiencia</span><br><span class="script" data-es="así se siente tu cita" data-en="this is how your visit feels">así se siente tu cita</span></h2>
+    </div>
+    <div class="ritual">
+      <div class="paso"><div class="num">I</div><h3 data-es="Llega y respira" data-en="Arrive and unwind">Llega y respira</h3><p data-es="Un salón luminoso, blanco y dorado te recibe con tu cafecito de la barra. Coffee + Nails = Happy Place." data-en="A bright white-and-gold salon welcomes you with a coffee from the bar. Coffee + Nails = Happy Place.">Un salón luminoso, blanco y dorado te recibe con tu cafecito de la barra. Coffee + Nails = Happy Place.</p></div>
+      <div class="paso"><div class="num">II</div><h3 data-es="Tu hora es solo tuya" data-en="Your time is yours alone">Tu hora es solo tuya</h3><p data-es="Trabaja solo con cita previa: sin filas, sin prisa y sin interrupciones, de principio a fin." data-en="She works by appointment only: no lines, no rush and no interruptions, from start to finish.">Trabaja solo con cita previa: sin filas, sin prisa y sin interrupciones, de principio a fin.</p></div>
+      <div class="paso"><div class="num">III</div><h3 data-es="Sales renovada" data-en="Leave renewed">Sales renovada</h3><p data-es="Manos y pies perfectos, la cabeza descansada y esa sensación de salir nueva." data-en="Perfect hands and feet, a rested mind, and that feeling of walking out brand new.">Manos y pies perfectos, la cabeza descansada y esa sensación de salir nueva.</p></div>
+    </div>
+  </div>
+</section>
 <section class="fondo-crema" id="salon">
   <div class="wrap salon-grid">
     <div class="salon-fotos">
@@ -433,6 +475,7 @@ html.js .revela.visible{opacity:1;transform:none}
     <div class="nombre">DIANE NAILS</div>
     <div class="script">Salón &amp; YHC</div>
     <p>1815 W Sligh Ave, Suite B · Tampa, FL 33604 · <a href="tel:+17868196369" style="color:#EDE6D8">(786) 819-6369</a></p>
+    <p class="horario-pie" data-es="Solo con cita previa · Martes a sábado" data-en="By appointment only · Tuesday to Saturday">Solo con cita previa · Martes a sábado</p>
     <div class="redes">
       <a target="_blank" rel="noopener" href="https://www.instagram.com/dianenailssalonyhc/">Instagram · @dianenailssalonyhc</a>
       <a target="_blank" rel="noopener" href="https://www.instagram.com/diane0998/">Instagram · @diane0998</a>
@@ -460,7 +503,7 @@ function setLang(lang){
 (function(){
   var cab = document.querySelector('header');
   window.addEventListener('scroll', function(){ cab.classList.toggle('con-sombra', window.scrollY > 10); }, {passive:true});
-  var els = document.querySelectorAll('.tit, .carta-item, .grid-gal figure, .chip-mas, .cita-grande, .citas-mini figure, .dato, .salon-fotos, .lista-cafe li');
+  var els = document.querySelectorAll('.tit, .carta-item, .carta-grupo, .paso, .grid-gal figure, .chip-mas, .cita-grande, .citas-mini figure, .dato, .salon-fotos, .lista-cafe li');
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
